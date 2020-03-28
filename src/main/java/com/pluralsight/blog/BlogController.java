@@ -13,16 +13,16 @@ public class BlogController {
 
     private PostRepository postRepository;
 
-    public BlogController (PostRepository obj) {
-        postRepository = obj;
+    public BlogController (PostRepository postRepository) {
+        this.postRepository = postRepository;
     }
 
     @RequestMapping("/")
-    public String listPosts(ModelMap obj) {
+    public String listPosts(ModelMap modelMap) {
 
-        List<Post> listPostObj = postRepository.getAllPosts();
+        List<Post> posts = postRepository.getAllPosts();
 
-        obj.put("posts", "listPostObj");
+        modelMap.put("posts", posts);
         return "home";
     }
 }
